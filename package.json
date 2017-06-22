@@ -8,7 +8,8 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "cross-env NODE_ENV=test istanbul cover --root src --dir ./coverage mocha -- test && npm run lint"
+    "test": "istanbul cover --root src --dir ./coverage node_modules/.bin/_mocha -- test",
+    "posttest": "npm run lint && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "keywords": [
     "es6",
@@ -17,7 +18,7 @@
   "author": "Kevin Tonon <kevin@betweenconcepts.com>",
   "license": "MIT",
   "devDependencies": {
-    "cross-env": "^5.0.1",
+    "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",
